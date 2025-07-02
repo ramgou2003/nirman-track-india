@@ -9,9 +9,9 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { useNavigate } from "react-router-dom";
-import { Search, Building2, TrendingUp, Users, Wallet } from "lucide-react";
+import { Search, Building2, TrendingUp, Users, Wallet, Zap, BarChart3, Target } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
-import constructionHero from "@/assets/construction-hero.jpg";
+import heroModern from "@/assets/hero-modern.jpg";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -87,13 +87,13 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-background">
       <Header 
-        title="Construction Projects"
+        title="Construction Hub"
         showAddButton={!showForm}
         onAddClick={() => setShowForm(true)}
-        addButtonText="New Project"
+        addButtonText="Create Project"
       />
       
-      <main className="container mx-auto px-4 py-6">
+      <main className="container mx-auto px-6 py-8">
         {showForm ? (
           <ProjectForm
             project={editingProject}
@@ -101,24 +101,24 @@ export default function Dashboard() {
             onCancel={handleCancelForm}
           />
         ) : (
-          <div className="space-y-6">
+          <div className="space-y-8">
             {/* Search and Filter - Only show when there are projects */}
             {projects.length > 0 && (
-              <div className="flex flex-col sm:flex-row gap-4 animate-fade-in">
+              <div className="flex flex-col lg:flex-row gap-4 animate-fade-in">
                 <div className="relative flex-1">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                   <Input
-                    placeholder="Search projects or clients..."
+                    placeholder="Search projects, clients, or descriptions..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-10 bg-card"
+                    className="pl-12 h-12 glass border-border/50 rounded-xl text-base"
                   />
                 </div>
                 <Select value={statusFilter} onValueChange={setStatusFilter}>
-                  <SelectTrigger className="w-full sm:w-48 bg-card">
+                  <SelectTrigger className="w-full lg:w-64 h-12 glass border-border/50 rounded-xl">
                     <SelectValue placeholder="Filter by status" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="glass backdrop-blur-xl">
                     <SelectItem value="all">All Status</SelectItem>
                     <SelectItem value="planning">Planning</SelectItem>
                     <SelectItem value="in-progress">In Progress</SelectItem>
@@ -131,98 +131,174 @@ export default function Dashboard() {
 
             {/* Welcome Hero Section or Projects Grid */}
             {projects.length === 0 ? (
-              <div className="animate-fade-in">
+              <div className="animate-fade-in space-y-8">
                 {/* Hero Section */}
-                <div className="relative overflow-hidden rounded-2xl bg-gradient-hero shadow-strong mb-8">
+                <div className="relative overflow-hidden rounded-3xl glass border border-border/20 shadow-glow">
                   <div className="absolute inset-0">
                     <img 
-                      src={constructionHero} 
-                      alt="Construction site" 
-                      className="w-full h-full object-cover opacity-20"
+                      src={heroModern} 
+                      alt="Modern construction management" 
+                      className="w-full h-full object-cover opacity-30"
                     />
-                    <div className="absolute inset-0 bg-gradient-hero opacity-80"></div>
+                    <div className="absolute inset-0 bg-gradient-hero opacity-60"></div>
                   </div>
-                  <div className="relative px-8 py-16 text-center">
-                    <Building2 className="w-16 h-16 mx-auto mb-6 text-primary-foreground animate-bounce-subtle" />
-                    <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-4">
-                      Welcome to Your Construction Hub
-                    </h1>
-                    <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
-                      Streamline your construction projects with comprehensive tracking of expenses, payments, labor, and suppliers.
-                    </p>
-                    <Button 
-                      onClick={() => setShowForm(true)}
-                      size="lg"
-                      className="bg-white text-primary hover:bg-white/90 shadow-strong transition-all duration-300 hover:scale-105"
-                    >
-                      <Building2 className="mr-2 h-5 w-5" />
-                      Start Your First Project
-                    </Button>
+                  <div className="relative px-8 py-20 lg:py-32 text-center">
+                    <div className="max-w-4xl mx-auto space-y-8">
+                      <div className="animate-float">
+                        <Building2 className="w-20 h-20 mx-auto mb-8 text-primary-foreground drop-shadow-lg" />
+                      </div>
+                      <div className="space-y-6">
+                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground leading-tight">
+                          Next-Gen Construction
+                          <span className="block bg-gradient-to-r from-primary-foreground to-primary-foreground/70 bg-clip-text text-transparent">
+                            Management Platform
+                          </span>
+                        </h1>
+                        <p className="text-xl lg:text-2xl text-primary-foreground/90 max-w-3xl mx-auto leading-relaxed">
+                          Transform your construction business with AI-powered project tracking, 
+                          real-time financial insights, and seamless team collaboration.
+                        </p>
+                      </div>
+                      <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
+                        <Button 
+                          onClick={() => setShowForm(true)}
+                          size="lg"
+                          className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 shadow-glow transition-all duration-500 hover:scale-105 rounded-xl px-8 py-4 text-lg font-semibold group relative overflow-hidden"
+                        >
+                          <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+                          <Building2 className="mr-3 h-6 w-6 relative z-10" />
+                          <span className="relative z-10">Start Your First Project</span>
+                        </Button>
+                        <Button 
+                          variant="outline"
+                          size="lg"
+                          className="glass border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 rounded-xl px-8 py-4 text-lg font-semibold backdrop-blur-sm"
+                        >
+                          <Zap className="mr-3 h-6 w-6" />
+                          Explore Features
+                        </Button>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                {/* Feature Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                  <div className="bg-gradient-card p-6 rounded-xl shadow-medium hover:shadow-strong transition-all duration-300 hover:scale-105">
-                    <Wallet className="w-12 h-12 text-primary mb-4" />
-                    <h3 className="text-lg font-semibold mb-2">Financial Tracking</h3>
-                    <p className="text-muted-foreground">Track all expenses, payments received from clients, and payments made to suppliers and workers.</p>
+                {/* Advanced Feature Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  <div className="group glass hover:shadow-glow hover-lift p-8 rounded-2xl border border-border/20 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-5 transition-opacity duration-500"></div>
+                    <div className="relative z-10">
+                      <div className="w-16 h-16 rounded-2xl bg-gradient-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <BarChart3 className="w-8 h-8 text-primary-foreground" />
+                      </div>
+                      <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors duration-300">
+                        Smart Analytics
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed">
+                        Real-time dashboards with AI-powered insights for budget tracking, timeline optimization, and predictive cost analysis.
+                      </p>
+                    </div>
                   </div>
                   
-                  <div className="bg-gradient-card p-6 rounded-xl shadow-medium hover:shadow-strong transition-all duration-300 hover:scale-105">
-                    <Users className="w-12 h-12 text-primary mb-4" />
-                    <h3 className="text-lg font-semibold mb-2">Labor Management</h3>
-                    <p className="text-muted-foreground">Manage your workforce with daily rates, skills tracking, and work assignments.</p>
+                  <div className="group glass hover:shadow-glow hover-lift p-8 rounded-2xl border border-border/20 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="relative z-10">
+                      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent to-accent/80 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <Users className="w-8 h-8 text-accent-foreground" />
+                      </div>
+                      <h3 className="text-2xl font-bold mb-4 group-hover:text-accent transition-colors duration-300">
+                        Team Coordination
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed">
+                        Manage your workforce with skill-based assignments, automated payroll calculations, and performance tracking.
+                      </p>
+                    </div>
                   </div>
                   
-                  <div className="bg-gradient-card p-6 rounded-xl shadow-medium hover:shadow-strong transition-all duration-300 hover:scale-105">
-                    <TrendingUp className="w-12 h-12 text-primary mb-4" />
-                    <h3 className="text-lg font-semibold mb-2">Project Insights</h3>
-                    <p className="text-muted-foreground">Get detailed insights into project progress, budget utilization, and profitability.</p>
+                  <div className="group glass hover:shadow-glow hover-lift p-8 rounded-2xl border border-border/20 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-success/5 to-success/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="relative z-10">
+                      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-success to-success/80 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <Target className="w-8 h-8 text-success-foreground" />
+                      </div>
+                      <h3 className="text-2xl font-bold mb-4 group-hover:text-success transition-colors duration-300">
+                        Goal Achievement
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed">
+                        Set project milestones, track completion rates, and optimize resource allocation for maximum efficiency.
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                {/* Quick Start Guide */}
-                <div className="bg-card p-6 rounded-xl border shadow-soft">
-                  <h3 className="text-lg font-semibold mb-4">Quick Start Guide</h3>
-                  <div className="space-y-3">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-semibold">1</div>
-                      <span>Create your first construction project</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-semibold">2</div>
-                      <span>Add labor and suppliers to your database</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-semibold">3</div>
-                      <span>Track expenses and payments as work progresses</span>
+                {/* Enhanced Quick Start Guide */}
+                <div className="glass p-8 rounded-2xl border border-border/20 hover:shadow-glow transition-all duration-500">
+                  <div className="max-w-4xl mx-auto">
+                    <h3 className="text-3xl font-bold mb-8 text-center bg-gradient-primary bg-clip-text text-transparent">
+                      Get Started in Minutes
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                      <div className="text-center group">
+                        <div className="w-16 h-16 bg-gradient-primary text-primary-foreground rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-glow">
+                          1
+                        </div>
+                        <h4 className="font-semibold text-lg mb-2">Create Project</h4>
+                        <p className="text-muted-foreground">Set up your construction project with timeline and budget details</p>
+                      </div>
+                      <div className="text-center group">
+                        <div className="w-16 h-16 bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-accent">
+                          2
+                        </div>
+                        <h4 className="font-semibold text-lg mb-2">Add Resources</h4>
+                        <p className="text-muted-foreground">Register your workforce and supplier network for easy management</p>
+                      </div>
+                      <div className="text-center group">
+                        <div className="w-16 h-16 bg-gradient-to-br from-success to-success/80 text-success-foreground rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                          3
+                        </div>
+                        <h4 className="font-semibold text-lg mb-2">Track Progress</h4>
+                        <p className="text-muted-foreground">Monitor expenses, payments, and project milestones in real-time</p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             ) : filteredProjects.length === 0 ? (
-              <div className="text-center py-12 animate-fade-in">
-                <div className="max-w-md mx-auto">
-                  <h3 className="text-lg font-semibold text-foreground mb-2">No projects found</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Try adjusting your search or filter criteria.
+              <div className="text-center py-16 animate-fade-in">
+                <div className="max-w-md mx-auto glass p-8 rounded-2xl border border-border/20">
+                  <h3 className="text-2xl font-semibold text-foreground mb-4">No projects found</h3>
+                  <p className="text-muted-foreground mb-6">
+                    Try adjusting your search or filter criteria to find your projects.
                   </p>
+                  <Button 
+                    onClick={() => {
+                      setSearchQuery("");
+                      setStatusFilter("all");
+                    }}
+                    variant="outline" 
+                    className="glass border-primary/30 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                  >
+                    Clear Filters
+                  </Button>
                 </div>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredProjects.map((project) => (
-                  <ProjectCard
-                    key={project.id}
-                    project={project}
-                    onEdit={(project) => {
-                      setEditingProject(project);
-                      setShowForm(true);
-                    }}
-                    onDelete={(id) => setDeleteId(id)}
-                    onView={handleViewProject}
-                  />
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                {filteredProjects.map((project, index) => (
+                  <div 
+                    key={project.id} 
+                    className="animate-fade-in"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <ProjectCard
+                      project={project}
+                      onEdit={(project) => {
+                        setEditingProject(project);
+                        setShowForm(true);
+                      }}
+                      onDelete={(id) => setDeleteId(id)}
+                      onView={handleViewProject}
+                    />
+                  </div>
                 ))}
               </div>
             )}

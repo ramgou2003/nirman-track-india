@@ -54,10 +54,16 @@ export function ProjectForm({ project, onSubmit, onCancel }: ProjectFormProps) {
   };
 
   return (
-    <div className="bg-card p-6 rounded-lg shadow-medium animate-scale-in">
-      <h2 className="text-xl font-semibold mb-4">
-        {project ? 'Edit Project' : 'Create New Project'}
-      </h2>
+    <div className="max-w-4xl mx-auto">
+      <div className="glass p-8 rounded-3xl border border-border/20 shadow-glow backdrop-blur-xl animate-scale-in">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+            {project ? 'Edit Project' : 'Create New Project'}
+          </h2>
+          <p className="text-muted-foreground mt-2">
+            {project ? 'Update your project details below' : 'Set up your construction project with comprehensive details'}
+          </p>
+        </div>
       
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
@@ -173,10 +179,10 @@ export function ProjectForm({ project, onSubmit, onCancel }: ProjectFormProps) {
             />
           </div>
 
-          <div className="flex gap-3 pt-4">
+          <div className="flex gap-4 pt-8">
             <Button 
               type="submit" 
-              className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground shadow-medium hover:shadow-strong transition-all duration-300"
+              className="flex-1 bg-gradient-primary hover:shadow-glow text-primary-foreground border-0 hover:scale-105 transition-all duration-300 rounded-xl h-12 text-lg font-semibold"
             >
               {project ? 'Update Project' : 'Create Project'}
             </Button>
@@ -184,7 +190,7 @@ export function ProjectForm({ project, onSubmit, onCancel }: ProjectFormProps) {
               type="button" 
               variant="outline" 
               onClick={onCancel}
-              className="flex-1 hover:bg-secondary transition-all duration-300"
+              className="flex-1 glass border-border/50 hover:bg-secondary/20 transition-all duration-300 rounded-xl h-12 text-lg font-semibold"
             >
               Cancel
             </Button>
@@ -192,5 +198,6 @@ export function ProjectForm({ project, onSubmit, onCancel }: ProjectFormProps) {
         </form>
       </Form>
     </div>
+  </div>
   );
 }

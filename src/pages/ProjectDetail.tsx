@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowLeft, Calendar, User, Wallet, Users, Truck } from "lucide-react";
+import { ArrowLeft, Calendar, User, Wallet, Users, Truck, TrendingUp } from "lucide-react";
 import { format } from "date-fns";
 
 export default function ProjectDetail() {
@@ -70,86 +70,13 @@ export default function ProjectDetail() {
             Back to Dashboard
           </Button>
 
-          {/* Project Overview */}
-          <Card className="bg-gradient-card shadow-medium animate-fade-in">
-            <CardHeader>
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                <div>
-                  <CardTitle className="text-2xl">{project.name}</CardTitle>
-                  <p className="text-muted-foreground mt-1">{project.description}</p>
-                </div>
-                <Badge className={statusColors[project.status]}>
-                  {project.status.replace('-', ' ').toUpperCase()}
-                </Badge>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="space-y-2">
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <User className="mr-2 h-4 w-4" />
-                    <span>Client</span>
-                  </div>
-                  <p className="font-semibold">{project.clientName}</p>
-                </div>
-                
-                <div className="space-y-2">
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <Calendar className="mr-2 h-4 w-4" />
-                    <span>Duration</span>
-                  </div>
-                  <p className="font-semibold">
-                    {format(new Date(project.startDate), 'MMM dd, yyyy')} - {format(new Date(project.expectedEndDate), 'MMM dd, yyyy')}
-                  </p>
-                </div>
-                
-                <div className="space-y-2">
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <Wallet className="mr-2 h-4 w-4" />
-                    <span>Budget</span>
-                  </div>
-                  <p className="font-semibold text-primary">₹{project.totalBudget.toLocaleString('en-IN')}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Financial Overview */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 animate-fade-in">
-            <Card className="bg-gradient-card hover:shadow-medium transition-all duration-300">
-              <CardContent className="p-4">
-                <div className="text-sm text-muted-foreground">Total Expenses</div>
-                <div className="text-2xl font-bold text-destructive">₹{totalExpenses.toLocaleString('en-IN')}</div>
-              </CardContent>
-            </Card>
-            
-            <Card className="bg-gradient-card hover:shadow-medium transition-all duration-300">
-              <CardContent className="p-4">
-                <div className="text-sm text-muted-foreground">Received</div>
-                <div className="text-2xl font-bold text-success">₹{totalReceived.toLocaleString('en-IN')}</div>
-              </CardContent>
-            </Card>
-            
-            <Card className="bg-gradient-card hover:shadow-medium transition-all duration-300">
-              <CardContent className="p-4">
-                <div className="text-sm text-muted-foreground">Paid Out</div>
-                <div className="text-2xl font-bold text-warning">₹{totalPaid.toLocaleString('en-IN')}</div>
-              </CardContent>
-            </Card>
-            
-            <Card className="bg-gradient-card hover:shadow-medium transition-all duration-300">
-              <CardContent className="p-4">
-                <div className="text-sm text-muted-foreground">Net Balance</div>
-                <div className={`text-2xl font-bold ${totalReceived - totalPaid - totalExpenses >= 0 ? 'text-success' : 'text-destructive'}`}>
-                  ₹{(totalReceived - totalPaid - totalExpenses).toLocaleString('en-IN')}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Detailed Tabs */}
-          <Tabs defaultValue="expenses" className="animate-fade-in">
-            <TabsList className="grid w-full grid-cols-4 bg-card">
+          {/* Tabs moved to top */}
+          <Tabs defaultValue="summary" className="animate-fade-in">
+            <TabsList className="grid w-full grid-cols-5 bg-card">
+              <TabsTrigger value="summary" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                <TrendingUp className="mr-2 h-4 w-4" />
+                Summary
+              </TabsTrigger>
               <TabsTrigger value="expenses" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                 <Wallet className="mr-2 h-4 w-4" />
                 Expenses
@@ -167,6 +94,88 @@ export default function ProjectDetail() {
                 Suppliers
               </TabsTrigger>
             </TabsList>
+
+            {/* Summary Tab Content */}
+            <TabsContent value="summary" className="mt-6">
+              <div className="space-y-6">
+                {/* Project Overview */}
+                <Card className="bg-gradient-card shadow-medium animate-fade-in">
+                  <CardHeader>
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                      <div>
+                        <CardTitle className="text-2xl">{project.name}</CardTitle>
+                        <p className="text-muted-foreground mt-1">{project.description}</p>
+                      </div>
+                      <Badge className={statusColors[project.status]}>
+                        {project.status.replace('-', ' ').toUpperCase()}
+                      </Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <div className="space-y-2">
+                        <div className="flex items-center text-sm text-muted-foreground">
+                          <User className="mr-2 h-4 w-4" />
+                          <span>Client</span>
+                        </div>
+                        <p className="font-semibold">{project.clientName}</p>
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <div className="flex items-center text-sm text-muted-foreground">
+                          <Calendar className="mr-2 h-4 w-4" />
+                          <span>Duration</span>
+                        </div>
+                        <p className="font-semibold">
+                          {format(new Date(project.startDate), 'MMM dd, yyyy')} - {format(new Date(project.expectedEndDate), 'MMM dd, yyyy')}
+                        </p>
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <div className="flex items-center text-sm text-muted-foreground">
+                          <Wallet className="mr-2 h-4 w-4" />
+                          <span>Budget</span>
+                        </div>
+                        <p className="font-semibold text-primary">₹{project.totalBudget.toLocaleString('en-IN')}</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Financial Overview */}
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 animate-fade-in">
+                  <Card className="bg-gradient-card hover:shadow-medium transition-all duration-300">
+                    <CardContent className="p-4">
+                      <div className="text-sm text-muted-foreground">Total Expenses</div>
+                      <div className="text-2xl font-bold text-destructive">₹{totalExpenses.toLocaleString('en-IN')}</div>
+                    </CardContent>
+                  </Card>
+                  
+                  <Card className="bg-gradient-card hover:shadow-medium transition-all duration-300">
+                    <CardContent className="p-4">
+                      <div className="text-sm text-muted-foreground">Received</div>
+                      <div className="text-2xl font-bold text-success">₹{totalReceived.toLocaleString('en-IN')}</div>
+                    </CardContent>
+                  </Card>
+                  
+                  <Card className="bg-gradient-card hover:shadow-medium transition-all duration-300">
+                    <CardContent className="p-4">
+                      <div className="text-sm text-muted-foreground">Paid Out</div>
+                      <div className="text-2xl font-bold text-warning">₹{totalPaid.toLocaleString('en-IN')}</div>
+                    </CardContent>
+                  </Card>
+                  
+                  <Card className="bg-gradient-card hover:shadow-medium transition-all duration-300">
+                    <CardContent className="p-4">
+                      <div className="text-sm text-muted-foreground">Net Balance</div>
+                      <div className={`text-2xl font-bold ${totalReceived - totalPaid - totalExpenses >= 0 ? 'text-success' : 'text-destructive'}`}>
+                        ₹{(totalReceived - totalPaid - totalExpenses).toLocaleString('en-IN')}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+            </TabsContent>
 
             <TabsContent value="expenses" className="mt-4">
               <Card className="bg-gradient-card">

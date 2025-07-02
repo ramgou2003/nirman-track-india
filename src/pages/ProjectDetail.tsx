@@ -183,7 +183,7 @@ export default function ProjectDetail() {
                   <div className="flex items-center justify-between">
                     <CardTitle>Project Expenses</CardTitle>
                     <Button onClick={() => navigate(`/project/${id}/expenses`)}>
-                      Manage Expenses
+                      Add Expenses
                     </Button>
                   </div>
                 </CardHeader>

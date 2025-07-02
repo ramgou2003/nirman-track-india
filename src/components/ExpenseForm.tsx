@@ -95,7 +95,7 @@ export function ExpenseForm({ projectId, onSubmit, onCancel }: ExpenseFormProps)
             )}
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <FormField
               control={form.control}
               name="amount"
@@ -125,7 +125,7 @@ export function ExpenseForm({ projectId, onSubmit, onCancel }: ExpenseFormProps)
             />
           </div>
 
-          <div className="flex gap-3 pt-4">
+          <div className="flex flex-col sm:flex-row gap-3 pt-4">
             <Button 
               type="submit" 
               className="flex-1 bg-gradient-primary hover:shadow-glow text-primary-foreground border-0 hover:scale-105 transition-all duration-300 rounded-xl"

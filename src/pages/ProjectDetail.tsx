@@ -108,26 +108,31 @@ export default function ProjectDetail() {
 
           {/* Tabs moved to top */}
           <Tabs defaultValue="summary" className="animate-fade-in">
-            <TabsList className="grid w-full grid-cols-5 bg-card">
-              <TabsTrigger value="summary" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                <TrendingUp className="mr-2 h-4 w-4" />
-                Summary
+            <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 bg-card">
+              <TabsTrigger value="summary" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-xs sm:text-sm">
+                <TrendingUp className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+                <span className="hidden sm:inline">Summary</span>
+                <span className="sm:hidden">Sum</span>
               </TabsTrigger>
-              <TabsTrigger value="expenses" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                <Wallet className="mr-2 h-4 w-4" />
-                Expenses
+              <TabsTrigger value="expenses" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-xs sm:text-sm">
+                <Wallet className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+                <span className="hidden sm:inline">Expenses</span>
+                <span className="sm:hidden">Exp</span>
               </TabsTrigger>
-              <TabsTrigger value="payments" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                <Calendar className="mr-2 h-4 w-4" />
-                Payments
+              <TabsTrigger value="payments" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-xs sm:text-sm">
+                <Calendar className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+                <span className="hidden sm:inline">Payments</span>
+                <span className="sm:hidden">Pay</span>
               </TabsTrigger>
-              <TabsTrigger value="labor" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                <Users className="mr-2 h-4 w-4" />
-                Labor
+              <TabsTrigger value="labor" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-xs sm:text-sm">
+                <Users className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+                <span className="hidden sm:inline">Labor</span>
+                <span className="sm:hidden">Lab</span>
               </TabsTrigger>
-              <TabsTrigger value="suppliers" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                <Truck className="mr-2 h-4 w-4" />
-                Suppliers
+              <TabsTrigger value="suppliers" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-xs sm:text-sm">
+                <Truck className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+                <span className="hidden sm:inline">Suppliers</span>
+                <span className="sm:hidden">Sup</span>
               </TabsTrigger>
             </TabsList>
 
@@ -179,25 +184,25 @@ export default function ProjectDetail() {
                 </Card>
 
                 {/* Financial Overview */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 animate-fade-in">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 animate-fade-in">
                   <Card className="bg-gradient-card hover:shadow-medium transition-all duration-300">
-                    <CardContent className="p-4">
-                      <div className="text-sm text-muted-foreground">Total Expenses</div>
-                      <div className="text-2xl font-bold text-destructive">₹{totalExpenses.toLocaleString('en-IN')}</div>
+                    <CardContent className="p-3 sm:p-4">
+                      <div className="text-xs sm:text-sm text-muted-foreground">Total Expenses</div>
+                      <div className="text-lg sm:text-2xl font-bold text-destructive">₹{totalExpenses.toLocaleString('en-IN')}</div>
                     </CardContent>
                   </Card>
                   
                   <Card className="bg-gradient-card hover:shadow-medium transition-all duration-300">
-                    <CardContent className="p-4">
-                      <div className="text-sm text-muted-foreground">Received</div>
-                      <div className="text-2xl font-bold text-success">₹{totalReceived.toLocaleString('en-IN')}</div>
+                    <CardContent className="p-3 sm:p-4">
+                      <div className="text-xs sm:text-sm text-muted-foreground">Received</div>
+                      <div className="text-lg sm:text-2xl font-bold text-success">₹{totalReceived.toLocaleString('en-IN')}</div>
                     </CardContent>
                   </Card>
                   
                   <Card className="bg-gradient-card hover:shadow-medium transition-all duration-300">
-                    <CardContent className="p-4">
-                      <div className="text-sm text-muted-foreground">Paid Out</div>
-                      <div className="text-2xl font-bold text-warning">₹{totalPaid.toLocaleString('en-IN')}</div>
+                    <CardContent className="p-3 sm:p-4">
+                      <div className="text-xs sm:text-sm text-muted-foreground">Paid Out</div>
+                      <div className="text-lg sm:text-2xl font-bold text-warning">₹{totalPaid.toLocaleString('en-IN')}</div>
                     </CardContent>
                   </Card>
                   

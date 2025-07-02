@@ -114,7 +114,7 @@ export function PaymentForm({ projectId, onSubmit, onCancel }: PaymentFormProps)
             )}
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <FormField
               control={form.control}
               name="amount"
@@ -166,7 +166,7 @@ export function PaymentForm({ projectId, onSubmit, onCancel }: PaymentFormProps)
             />
           </div>
 
-          <div className="flex gap-3 pt-4">
+          <div className="flex flex-col sm:flex-row gap-3 pt-4">
             <Button 
               type="submit" 
               className="flex-1 bg-gradient-primary hover:shadow-glow text-primary-foreground border-0 hover:scale-105 transition-all duration-300 rounded-xl"

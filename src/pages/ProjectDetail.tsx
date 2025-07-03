@@ -100,12 +100,11 @@ export default function ProjectDetail() {
           <Button 
             variant="ghost" 
             onClick={() => navigate('/')}
-            size="mobile"
+            size="icon-mobile"
             className="mb-4 hover:bg-secondary transition-all duration-300"
           >
-            <ArrowLeft className="mr-2 h-4 w-4" />
+            <ArrowLeft className="h-4 w-4 sm:mr-2" />
             <span className="hidden sm:inline">Back to Dashboard</span>
-            <span className="sm:hidden">Back</span>
           </Button>
 
           {/* Tabs moved to top */}
@@ -232,12 +231,11 @@ export default function ProjectDetail() {
                       </CardTitle>
                       <Button 
                         onClick={() => setShowExpenseForm(true)}
-                        size="mobile"
+                        size="icon-mobile"
                         className="bg-gradient-primary hover:shadow-glow text-primary-foreground border-0 hover:scale-105 transition-all duration-300 rounded-xl"
                       >
-                        <Plus className="mr-2 h-4 w-4" />
+                        <Plus className="h-4 w-4 sm:mr-2" />
                         <span className="hidden sm:inline">Add Expense</span>
-                        <span className="sm:hidden">Add</span>
                       </Button>
                     </div>
                   </CardHeader>
@@ -249,11 +247,11 @@ export default function ProjectDetail() {
                         <Button 
                           onClick={() => setShowExpenseForm(true)}
                           variant="outline"
-                          size="mobile"
+                          size="icon-mobile"
                           className="glass border-primary/30 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                         >
-                          <Plus className="mr-2 h-4 w-4" />
-                          Add First Expense
+                          <Plus className="h-4 w-4 sm:mr-2" />
+                          <span className="hidden sm:inline">Add First Expense</span>
                         </Button>
                       </div>
                     ) : (
@@ -296,12 +294,11 @@ export default function ProjectDetail() {
                       </CardTitle>
                       <Button 
                         onClick={() => setShowPaymentForm(true)}
-                        size="mobile"
+                        size="icon-mobile"
                         className="bg-gradient-primary hover:shadow-glow text-primary-foreground border-0 hover:scale-105 transition-all duration-300 rounded-xl"
                       >
-                        <Plus className="mr-2 h-4 w-4" />
+                        <Plus className="h-4 w-4 sm:mr-2" />
                         <span className="hidden sm:inline">Add Payment</span>
-                        <span className="sm:hidden">Add</span>
                       </Button>
                     </div>
                   </CardHeader>
@@ -313,11 +310,11 @@ export default function ProjectDetail() {
                         <Button 
                           onClick={() => setShowPaymentForm(true)}
                           variant="outline"
-                          size="mobile"
+                          size="icon-mobile"
                           className="glass border-primary/30 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                         >
-                          <Plus className="mr-2 h-4 w-4" />
-                          Add First Payment
+                          <Plus className="h-4 w-4 sm:mr-2" />
+                          <span className="hidden sm:inline">Add First Payment</span>
                         </Button>
                       </div>
                     ) : (
@@ -355,10 +352,10 @@ export default function ProjectDetail() {
                     <CardTitle>Labor Management</CardTitle>
                     <Button 
                       onClick={() => navigate('/labor')}
-                      size="mobile"
+                      size="icon-mobile"
                     >
+                      <Users className="h-4 w-4 sm:mr-2" />
                       <span className="hidden sm:inline">Manage Labor</span>
-                      <span className="sm:hidden">Labor</span>
                     </Button>
                   </div>
                 </CardHeader>
@@ -377,10 +374,10 @@ export default function ProjectDetail() {
                     <CardTitle>Suppliers</CardTitle>
                     <Button 
                       onClick={() => navigate('/suppliers')}
-                      size="mobile"
+                      size="icon-mobile"
                     >
+                      <Truck className="h-4 w-4 sm:mr-2" />
                       <span className="hidden sm:inline">Manage Suppliers</span>
-                      <span className="sm:hidden">Suppliers</span>
                     </Button>
                   </div>
                 </CardHeader>

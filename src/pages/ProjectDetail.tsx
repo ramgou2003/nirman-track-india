@@ -100,10 +100,12 @@ export default function ProjectDetail() {
           <Button 
             variant="ghost" 
             onClick={() => navigate('/')}
+            size="mobile"
             className="mb-4 hover:bg-secondary transition-all duration-300"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Dashboard
+            <span className="hidden sm:inline">Back to Dashboard</span>
+            <span className="sm:hidden">Back</span>
           </Button>
 
           {/* Tabs moved to top */}
@@ -356,8 +358,12 @@ export default function ProjectDetail() {
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <CardTitle>Labor Management</CardTitle>
-                    <Button onClick={() => navigate('/labor')}>
-                      Manage Labor
+                    <Button 
+                      onClick={() => navigate('/labor')}
+                      size="mobile"
+                    >
+                      <span className="hidden sm:inline">Manage Labor</span>
+                      <span className="sm:hidden">Labor</span>
                     </Button>
                   </div>
                 </CardHeader>
@@ -374,8 +380,12 @@ export default function ProjectDetail() {
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <CardTitle>Suppliers</CardTitle>
-                    <Button onClick={() => navigate('/suppliers')}>
-                      Manage Suppliers
+                    <Button 
+                      onClick={() => navigate('/suppliers')}
+                      size="mobile"
+                    >
+                      <span className="hidden sm:inline">Manage Suppliers</span>
+                      <span className="sm:hidden">Suppliers</span>
                     </Button>
                   </div>
                 </CardHeader>

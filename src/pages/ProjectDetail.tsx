@@ -110,31 +110,26 @@ export default function ProjectDetail() {
 
           {/* Tabs moved to top */}
           <Tabs defaultValue="summary" className="animate-fade-in">
-            <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 bg-card">
-              <TabsTrigger value="summary" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-xs sm:text-sm">
-                <TrendingUp className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
-                <span className="hidden sm:inline">Summary</span>
-                <span className="sm:hidden">Sum</span>
+            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 bg-card mb-6">
+              <TabsTrigger value="summary" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-xs px-2 py-3">
+                <TrendingUp className="mr-1 h-3 w-3 lg:mr-2 lg:h-4 lg:w-4" />
+                <span className="truncate">Summary</span>
               </TabsTrigger>
-              <TabsTrigger value="expenses" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-xs sm:text-sm">
-                <Wallet className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
-                <span className="hidden sm:inline">Expenses</span>
-                <span className="sm:hidden">Exp</span>
+              <TabsTrigger value="expenses" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-xs px-2 py-3">
+                <Wallet className="mr-1 h-3 w-3 lg:mr-2 lg:h-4 lg:w-4" />
+                <span className="truncate">Expenses</span>
               </TabsTrigger>
-              <TabsTrigger value="payments" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-xs sm:text-sm">
-                <Calendar className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
-                <span className="hidden sm:inline">Payments</span>
-                <span className="sm:hidden">Pay</span>
+              <TabsTrigger value="payments" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-xs px-2 py-3 lg:col-start-3">
+                <Calendar className="mr-1 h-3 w-3 lg:mr-2 lg:h-4 lg:w-4" />
+                <span className="truncate">Payments</span>
               </TabsTrigger>
-              <TabsTrigger value="labor" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-xs sm:text-sm">
-                <Users className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
-                <span className="hidden sm:inline">Labor</span>
-                <span className="sm:hidden">Lab</span>
+              <TabsTrigger value="labor" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-xs px-2 py-3">
+                <Users className="mr-1 h-3 w-3 lg:mr-2 lg:h-4 lg:w-4" />
+                <span className="truncate">Labor</span>
               </TabsTrigger>
-              <TabsTrigger value="suppliers" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-xs sm:text-sm">
-                <Truck className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
-                <span className="hidden sm:inline">Suppliers</span>
-                <span className="sm:hidden">Sup</span>
+              <TabsTrigger value="suppliers" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-xs px-2 py-3">
+                <Truck className="mr-1 h-3 w-3 lg:mr-2 lg:h-4 lg:w-4" />
+                <span className="truncate">Suppliers</span>
               </TabsTrigger>
             </TabsList>
 

@@ -32,11 +32,13 @@ export function Header({ title, showAddButton = false, onAddClick, addButtonText
             {showAddButton && (
               <Button 
                 onClick={onAddClick}
-                className="bg-gradient-primary hover:shadow-glow text-primary-foreground border-0 hover:scale-105 transition-all duration-300 rounded-xl px-6 group relative overflow-hidden"
+                size="mobile"
+                className="bg-gradient-primary hover:shadow-glow text-primary-foreground border-0 hover:scale-105 transition-all duration-300 rounded-xl group relative overflow-hidden"
               >
                 <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <Plus className="mr-2 h-4 w-4 relative z-10 group-hover:rotate-90 transition-transform duration-300" />
-                <span className="relative z-10">{addButtonText}</span>
+                <span className="relative z-10 hidden sm:inline">{addButtonText}</span>
+                <span className="relative z-10 sm:hidden">Add</span>
               </Button>
             )}
             <ThemeToggle />

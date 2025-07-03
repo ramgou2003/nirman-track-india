@@ -235,10 +235,12 @@ export default function ProjectDetail() {
                       </CardTitle>
                       <Button 
                         onClick={() => setShowExpenseForm(true)}
+                        size="mobile"
                         className="bg-gradient-primary hover:shadow-glow text-primary-foreground border-0 hover:scale-105 transition-all duration-300 rounded-xl"
                       >
                         <Plus className="mr-2 h-4 w-4" />
-                        Add Expense
+                        <span className="hidden sm:inline">Add Expense</span>
+                        <span className="sm:hidden">Add</span>
                       </Button>
                     </div>
                   </CardHeader>
@@ -250,6 +252,7 @@ export default function ProjectDetail() {
                         <Button 
                           onClick={() => setShowExpenseForm(true)}
                           variant="outline"
+                          size="mobile"
                           className="glass border-primary/30 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                         >
                           <Plus className="mr-2 h-4 w-4" />
@@ -296,10 +299,12 @@ export default function ProjectDetail() {
                       </CardTitle>
                       <Button 
                         onClick={() => setShowPaymentForm(true)}
+                        size="mobile"
                         className="bg-gradient-primary hover:shadow-glow text-primary-foreground border-0 hover:scale-105 transition-all duration-300 rounded-xl"
                       >
                         <Plus className="mr-2 h-4 w-4" />
-                        Add Payment
+                        <span className="hidden sm:inline">Add Payment</span>
+                        <span className="sm:hidden">Add</span>
                       </Button>
                     </div>
                   </CardHeader>
@@ -311,6 +316,7 @@ export default function ProjectDetail() {
                         <Button 
                           onClick={() => setShowPaymentForm(true)}
                           variant="outline"
+                          size="mobile"
                           className="glass border-primary/30 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                         >
                           <Plus className="mr-2 h-4 w-4" />

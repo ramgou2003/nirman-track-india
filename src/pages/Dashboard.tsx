@@ -163,19 +163,19 @@ export default function Dashboard() {
                         <Button 
                           onClick={() => setShowForm(true)}
                           size="lg"
-                          className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 shadow-glow transition-all duration-500 hover:scale-105 rounded-xl px-8 py-4 text-lg font-semibold group relative overflow-hidden"
+                          className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 shadow-glow transition-all duration-500 hover:scale-105 rounded-xl font-semibold group relative overflow-hidden w-full sm:w-auto"
                         >
                           <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
-                          <Building2 className="mr-3 h-6 w-6 relative z-10" />
-                          <span className="relative z-10">Start Your First Project</span>
+                          <Building2 className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6 relative z-10" />
+                          <span className="relative z-10 text-sm sm:text-lg">Start Your First Project</span>
                         </Button>
                         <Button 
                           variant="outline"
                           size="lg"
-                          className="glass border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 rounded-xl px-8 py-4 text-lg font-semibold backdrop-blur-sm"
+                          className="glass border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 rounded-xl font-semibold backdrop-blur-sm w-full sm:w-auto"
                         >
-                          <Zap className="mr-3 h-6 w-6" />
-                          Explore Features
+                          <Zap className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6" />
+                          <span className="text-sm sm:text-lg">Explore Features</span>
                         </Button>
                       </div>
                     </div>
@@ -275,6 +275,7 @@ export default function Dashboard() {
                       setStatusFilter("all");
                     }}
                     variant="outline" 
+                    size="mobile"
                     className="glass border-primary/30 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                   >
                     Clear Filters

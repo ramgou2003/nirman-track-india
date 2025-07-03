@@ -128,15 +128,17 @@ export function ExpenseForm({ projectId, onSubmit, onCancel }: ExpenseFormProps)
           <div className="flex flex-col sm:flex-row gap-3 pt-4">
             <Button 
               type="submit" 
-              className="flex-1 bg-gradient-primary hover:shadow-glow text-primary-foreground border-0 hover:scale-105 transition-all duration-300 rounded-xl"
+              size="mobile"
+              className="bg-gradient-primary hover:shadow-glow text-primary-foreground border-0 hover:scale-105 transition-all duration-300 rounded-xl"
             >
               Add Expense
             </Button>
             <Button 
               type="button" 
               variant="outline" 
+              size="mobile"
               onClick={onCancel}
-              className="flex-1 glass border-border/50 hover:bg-secondary/20 transition-all duration-300 rounded-xl"
+              className="glass border-border/50 hover:bg-secondary/20 transition-all duration-300 rounded-xl"
             >
               Cancel
             </Button>

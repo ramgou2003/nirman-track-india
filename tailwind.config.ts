@@ -129,6 +129,30 @@ export default {
 				'shimmer': {
 					'0%': { backgroundPosition: '-200% 0' },
 					'100%': { backgroundPosition: '200% 0' }
+				},
+				'gradient-rotate': {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' }
+				},
+				'morph': {
+					'0%, 100%': { borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%' },
+					'50%': { borderRadius: '30% 60% 70% 40% / 50% 60% 30% 60%' }
+				},
+				'gradient-shift': {
+					'0%, 100%': { backgroundPosition: '0% 50%' },
+					'50%': { backgroundPosition: '100% 50%' }
+				},
+				'pulse-ring': {
+					'0%': { transform: 'translate(-50%, -50%) scale(1)', opacity: '1' },
+					'100%': { transform: 'translate(-50%, -50%) scale(2)', opacity: '0' }
+				},
+				'slide-up': {
+					'0%': { transform: 'translateY(100%)', opacity: '0' },
+					'100%': { transform: 'translateY(0)', opacity: '1' }
+				},
+				'zoom-in': {
+					'0%': { transform: 'scale(0)', opacity: '0' },
+					'100%': { transform: 'scale(1)', opacity: '1' }
 				}
 			},
 			animation: {
@@ -140,7 +164,13 @@ export default {
 				'bounce-subtle': 'bounce-subtle 3s infinite',
 				'pulse-glow': 'pulse-glow 2s infinite',
 				'float': 'float 3s ease-in-out infinite',
-				'shimmer': 'shimmer 2s linear infinite'
+				'shimmer': 'shimmer 2s linear infinite',
+				'gradient-rotate': 'gradient-rotate 3s linear infinite',
+				'morph': 'morph 8s ease-in-out infinite',
+				'gradient-shift': 'gradient-shift 3s ease infinite',
+				'pulse-ring': 'pulse-ring 2s infinite',
+				'slide-up': 'slide-up 0.6s ease-out',
+				'zoom-in': 'zoom-in 0.5s ease-out'
 			}
 		}
 	},

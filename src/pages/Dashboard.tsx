@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Project } from "@/types";
+import { Project, Expense, Payment } from "@/types";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { Header } from "@/components/Header";
 import { ProjectCard } from "@/components/ProjectCard";
@@ -9,13 +9,15 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { useNavigate } from "react-router-dom";
-import { Search, Building2, TrendingUp, Users, Wallet, Zap, BarChart3, Target } from "lucide-react";
+import { Search, Building2, TrendingUp, Users, Wallet, Zap, BarChart3, Target, Sparkles, Rocket, Shield, Globe, ArrowRight, Play, Filter, SlidersHorizontal, X } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import heroModern from "@/assets/hero-modern.jpg";
 
 export default function Dashboard() {
   const navigate = useNavigate();
   const [projects, setProjects] = useLocalStorage<Project[]>("projects", []);
+  const [expenses] = useLocalStorage<Expense[]>("expenses", []);
+  const [payments] = useLocalStorage<Payment[]>("payments", []);
   const [showForm, setShowForm] = useState(false);
   const [editingProject, setEditingProject] = useState<Project | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
@@ -86,14 +88,14 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header 
-        title="Construction Hub"
+      <Header
+        title="KHUSHI Homes"
         showAddButton={!showForm}
         onAddClick={() => setShowForm(true)}
         addButtonText="Create Project"
       />
       
-      <main className="container mx-auto px-6 py-8">
+      <main className="container mx-auto px-6 py-4">
         {showForm ? (
           <ProjectForm
             project={editingProject}
@@ -101,96 +103,171 @@ export default function Dashboard() {
             onCancel={handleCancelForm}
           />
         ) : (
-          <div className="space-y-8">
-            {/* Search and Filter - Only show when there are projects */}
-            {projects.length > 0 && (
-              <div className="flex flex-col lg:flex-row gap-4 animate-fade-in">
-                <div className="relative flex-1">
-                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                  <Input
-                    placeholder="Search projects, clients, or descriptions..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-12 h-12 glass border-border/50 rounded-xl text-base"
-                  />
-                </div>
-                <Select value={statusFilter} onValueChange={setStatusFilter}>
-                  <SelectTrigger className="w-full lg:w-64 h-12 glass border-border/50 rounded-xl">
-                    <SelectValue placeholder="Filter by status" />
-                  </SelectTrigger>
-                  <SelectContent className="glass backdrop-blur-xl">
-                    <SelectItem value="all">All Status</SelectItem>
-                    <SelectItem value="planning">Planning</SelectItem>
-                    <SelectItem value="in-progress">In Progress</SelectItem>
-                    <SelectItem value="on-hold">On Hold</SelectItem>
-                    <SelectItem value="completed">Completed</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            )}
+          <div className="space-y-4">
+            {/* Ultra-Modern Quick Start Guide - Moved to top */}
+            {projects.length === 0 && (
+              <div className="animate-fade-in">
+                <div className="glass-strong p-10 rounded-3xl border border-blue-500/30 hover:shadow-glow transition-all duration-500 particles-bg relative overflow-hidden">
+                  {/* Background decoration */}
+                  <div className="absolute top-10 right-10 w-40 h-40 bg-primary/5 rounded-full morph-shape animate-float"></div>
+                  <div className="absolute bottom-10 left-10 w-32 h-32 bg-accent/5 rounded-full animate-bounce-subtle"></div>
 
-            {/* Welcome Hero Section or Projects Grid */}
-            {projects.length === 0 ? (
-              <div className="animate-fade-in space-y-8">
-                {/* Hero Section */}
-                <div className="relative overflow-hidden rounded-3xl glass border border-border/20 shadow-glow">
-                  <div className="absolute inset-0">
-                    <img 
-                      src={heroModern} 
-                      alt="Modern construction management" 
-                      className="w-full h-full object-cover opacity-30"
-                    />
-                    <div className="absolute inset-0 bg-gradient-hero opacity-60"></div>
-                  </div>
-                  <div className="relative px-8 py-20 lg:py-32 text-center">
-                    <div className="max-w-4xl mx-auto space-y-8">
-                      <div className="animate-float">
-                        <Building2 className="w-20 h-20 mx-auto mb-8 text-primary-foreground drop-shadow-lg" />
+                  <div className="max-w-5xl mx-auto relative z-10">
+                    <div className="text-center mb-12">
+                      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-primary/30 text-primary/80 text-sm font-medium mb-6">
+                        <Rocket className="w-4 h-4" />
+                        <span>Quick Setup Process</span>
                       </div>
-                      <div className="space-y-6">
-                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground leading-tight">
-                          Next-Gen Construction
-                          <span className="block bg-gradient-to-r from-primary-foreground to-primary-foreground/70 bg-clip-text text-transparent">
-                            Management Platform
-                          </span>
-                        </h1>
-                        <p className="text-xl lg:text-2xl text-primary-foreground/90 max-w-3xl mx-auto leading-relaxed">
-                          Transform your construction business with AI-powered project tracking, 
-                          real-time financial insights, and seamless team collaboration.
-                        </p>
+                      <h3 className="text-4xl font-bold mb-4 text-gradient-rainbow animate-gradient-shift">
+                        Get Started in Minutes
+                      </h3>
+                      <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                        Launch your construction management journey with our streamlined onboarding process
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+                      <div className="text-center group relative">
+                        <div className="relative inline-block mb-6">
+                          <div className="w-20 h-20 bg-gradient-primary text-primary-foreground rounded-3xl flex items-center justify-center text-2xl font-bold mx-auto group-hover:scale-110 transition-transform duration-300 shadow-glow pulse-ring">
+                            1
+                          </div>
+                          <div className="absolute -top-2 -right-2 w-6 h-6 bg-success rounded-full flex items-center justify-center">
+                            <Building2 className="w-3 h-3 text-success-foreground" />
+                          </div>
+                        </div>
+                        <h4 className="font-bold text-xl mb-3 text-gradient-primary">Create Project</h4>
+                        <p className="text-muted-foreground leading-relaxed">Set up your construction project with AI-assisted timeline and budget optimization</p>
                       </div>
-                      <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
-                        <Button 
-                          onClick={() => setShowForm(true)}
-                          size="lg"
-                          className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 shadow-glow transition-all duration-500 hover:scale-105 rounded-xl font-semibold group relative overflow-hidden w-full sm:w-auto"
-                        >
-                          <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
-                          <Building2 className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6 relative z-10" />
-                          <span className="relative z-10 text-sm sm:text-lg">Start Your First Project</span>
-                        </Button>
-                        <Button 
-                          variant="outline"
-                          size="lg"
-                          className="glass border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 rounded-xl font-semibold backdrop-blur-sm w-full sm:w-auto"
-                        >
-                          <Zap className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6" />
-                          <span className="text-sm sm:text-lg">Explore Features</span>
-                        </Button>
+
+                      <div className="text-center group relative">
+                        <div className="relative inline-block mb-6">
+                          <div className="w-20 h-20 bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-3xl flex items-center justify-center text-2xl font-bold mx-auto group-hover:scale-110 transition-transform duration-300 shadow-glow">
+                            2
+                          </div>
+                          <div className="absolute -top-2 -right-2 w-6 h-6 bg-warning rounded-full flex items-center justify-center">
+                            <Users className="w-3 h-3 text-warning-foreground" />
+                          </div>
+                        </div>
+                        <h4 className="font-bold text-xl mb-3 text-gradient-primary">Add Team & Resources</h4>
+                        <p className="text-muted-foreground leading-relaxed">Invite team members, configure suppliers, and set up intelligent resource allocation</p>
                       </div>
+
+                      <div className="text-center group relative">
+                        <div className="relative inline-block mb-6">
+                          <div className="w-20 h-20 bg-gradient-to-br from-success to-success/80 text-success-foreground rounded-3xl flex items-center justify-center text-2xl font-bold mx-auto group-hover:scale-110 transition-transform duration-300 shadow-glow pulse-ring">
+                            3
+                          </div>
+                          <div className="absolute -top-2 -right-2 w-6 h-6 bg-primary rounded-full flex items-center justify-center">
+                            <BarChart3 className="w-3 h-3 text-primary-foreground" />
+                          </div>
+                        </div>
+                        <h4 className="font-bold text-xl mb-3 text-gradient-primary">Track Progress</h4>
+                        <p className="text-muted-foreground leading-relaxed">Monitor expenses, payments, and milestones with real-time analytics and insights</p>
+                      </div>
+                    </div>
+
+                    {/* Call to action */}
+                    <div className="text-center mt-12">
+                      <Button
+                        onClick={() => setShowForm(true)}
+                        size="lg"
+                        className="bg-gradient-primary hover:shadow-glow text-primary-foreground border-0 hover:scale-105 transition-all duration-300 rounded-2xl font-bold group relative overflow-hidden px-8 py-4 neon-glow"
+                      >
+                        <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <Sparkles className="mr-3 h-5 w-5 relative z-10 group-hover:rotate-12 transition-transform duration-300" />
+                        <span className="relative z-10 text-lg">Start Building Now</span>
+                        <ArrowRight className="ml-3 h-5 w-5 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
+                      </Button>
                     </div>
                   </div>
                 </div>
-
-                {/* Advanced Feature Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  <div className="group glass hover:shadow-glow hover-lift p-8 rounded-2xl border border-border/20 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-5 transition-opacity duration-500"></div>
-                    <div className="relative z-10">
-                      <div className="w-16 h-16 rounded-2xl bg-gradient-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <BarChart3 className="w-8 h-8 text-primary-foreground" />
+              </div>
+            )}
+            {/* Search and Filter Controls */}
+            {projects.length > 0 && (
+              <div className="flex flex-row gap-4 items-center animate-fade-in">
+                {/* Search Section */}
+                <div className="flex-1">
+                  <div className="relative group">
+                    <div className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10">
+                      <div className="w-8 h-8 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                        <Search className="h-5 w-5 text-primary group-hover:scale-110 transition-transform duration-300" />
                       </div>
-                      <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors duration-300">
+                    </div>
+                    <Input
+                      placeholder="Search projects, clients, or descriptions..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="pl-14 pr-4 h-14 bg-background/50 border-2 border-border/30 hover:border-primary/50 focus:border-primary rounded-2xl text-base font-medium placeholder:text-muted-foreground/70 backdrop-blur-sm transition-all duration-300 shadow-lg hover:shadow-xl focus:shadow-2xl"
+                    />
+                    {searchQuery && (
+                      <button
+                        onClick={() => setSearchQuery("")}
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-lg bg-muted/20 hover:bg-destructive/20 flex items-center justify-center transition-colors duration-300 group"
+                      >
+                        <X className="h-4 w-4 text-muted-foreground group-hover:text-destructive transition-colors duration-300" />
+                      </button>
+                    )}
+                  </div>
+                </div>
+
+                {/* Filter Button */}
+                <div className="w-auto">
+                  <Select value={statusFilter} onValueChange={setStatusFilter}>
+                    <SelectTrigger className="w-14 h-14 bg-background/50 border-2 border-border/30 hover:border-accent/50 focus:border-accent rounded-2xl text-base font-medium backdrop-blur-sm transition-all duration-300 shadow-lg hover:shadow-xl focus:shadow-2xl">
+                      <SlidersHorizontal className="h-5 w-5 text-accent" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-background/95 backdrop-blur-xl border border-border/50 rounded-2xl shadow-2xl">
+                      <SelectItem value="all" className="rounded-xl font-medium">
+                        <div className="flex items-center gap-3">
+                          <div className="w-3 h-3 rounded-full bg-gradient-to-r from-primary to-accent"></div>
+                          All Status
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="planning" className="rounded-xl font-medium">
+                        <div className="flex items-center gap-3">
+                          <div className="w-3 h-3 rounded-full bg-warning"></div>
+                          Planning
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="in-progress" className="rounded-xl font-medium">
+                        <div className="flex items-center gap-3">
+                          <div className="w-3 h-3 rounded-full bg-primary"></div>
+                          In Progress
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="on-hold" className="rounded-xl font-medium">
+                        <div className="flex items-center gap-3">
+                          <div className="w-3 h-3 rounded-full bg-muted-foreground"></div>
+                          On Hold
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="completed" className="rounded-xl font-medium">
+                        <div className="flex items-center gap-3">
+                          <div className="w-3 h-3 rounded-full bg-success"></div>
+                          Completed
+                        </div>
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+            )}
+
+            {/* Projects Grid */}
+            {projects.length === 0 ? (
+              <div className="animate-fade-in space-y-8">
+
+                {/* Enhanced Feature Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  <div className="group glass-strong hover:shadow-glow hover-magnetic p-8 rounded-3xl border border-blue-500/30 relative overflow-hidden gradient-border">
+                    <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+                    <div className="relative z-10">
+                      <div className="w-20 h-20 rounded-3xl bg-gradient-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-glow pulse-ring">
+                        <BarChart3 className="w-10 h-10 text-primary-foreground" />
+                      </div>
+                      <h3 className="text-2xl font-bold mb-4 text-gradient-primary group-hover:animate-pulse">
                         Smart Analytics
                       </h3>
                       <p className="text-muted-foreground leading-relaxed">
@@ -199,13 +276,13 @@ export default function Dashboard() {
                     </div>
                   </div>
                   
-                  <div className="group glass hover:shadow-glow hover-lift p-8 rounded-2xl border border-border/20 relative overflow-hidden">
+                  <div className="group glass-strong hover:shadow-glow hover-magnetic p-8 rounded-3xl border border-blue-500/30 relative overflow-hidden neon-glow">
                     <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <div className="relative z-10">
-                      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent to-accent/80 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <Users className="w-8 h-8 text-accent-foreground" />
+                      <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-accent to-accent/80 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-glow">
+                        <Users className="w-10 h-10 text-accent-foreground" />
                       </div>
-                      <h3 className="text-2xl font-bold mb-4 group-hover:text-accent transition-colors duration-300">
+                      <h3 className="text-2xl font-bold mb-4 text-gradient-primary group-hover:animate-pulse">
                         Team Coordination
                       </h3>
                       <p className="text-muted-foreground leading-relaxed">
@@ -213,14 +290,14 @@ export default function Dashboard() {
                       </p>
                     </div>
                   </div>
-                  
-                  <div className="group glass hover:shadow-glow hover-lift p-8 rounded-2xl border border-border/20 relative overflow-hidden">
+
+                  <div className="group glass-strong hover:shadow-glow hover-magnetic p-8 rounded-3xl border border-blue-500/30 relative overflow-hidden gradient-border">
                     <div className="absolute inset-0 bg-gradient-to-br from-success/5 to-success/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <div className="relative z-10">
-                      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-success to-success/80 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <Target className="w-8 h-8 text-success-foreground" />
+                      <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-success to-success/80 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-glow pulse-ring">
+                        <Target className="w-10 h-10 text-success-foreground" />
                       </div>
-                      <h3 className="text-2xl font-bold mb-4 group-hover:text-success transition-colors duration-300">
+                      <h3 className="text-2xl font-bold mb-4 text-gradient-primary group-hover:animate-pulse">
                         Goal Achievement
                       </h3>
                       <p className="text-muted-foreground leading-relaxed">
@@ -229,42 +306,10 @@ export default function Dashboard() {
                     </div>
                   </div>
                 </div>
-
-                {/* Enhanced Quick Start Guide */}
-                <div className="glass p-8 rounded-2xl border border-border/20 hover:shadow-glow transition-all duration-500">
-                  <div className="max-w-4xl mx-auto">
-                    <h3 className="text-3xl font-bold mb-8 text-center bg-gradient-primary bg-clip-text text-transparent">
-                      Get Started in Minutes
-                    </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                      <div className="text-center group">
-                        <div className="w-16 h-16 bg-gradient-primary text-primary-foreground rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-glow">
-                          1
-                        </div>
-                        <h4 className="font-semibold text-lg mb-2">Create Project</h4>
-                        <p className="text-muted-foreground">Set up your construction project with timeline and budget details</p>
-                      </div>
-                      <div className="text-center group">
-                        <div className="w-16 h-16 bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-accent">
-                          2
-                        </div>
-                        <h4 className="font-semibold text-lg mb-2">Add Resources</h4>
-                        <p className="text-muted-foreground">Register your workforce and supplier network for easy management</p>
-                      </div>
-                      <div className="text-center group">
-                        <div className="w-16 h-16 bg-gradient-to-br from-success to-success/80 text-success-foreground rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                          3
-                        </div>
-                        <h4 className="font-semibold text-lg mb-2">Track Progress</h4>
-                        <p className="text-muted-foreground">Monitor expenses, payments, and project milestones in real-time</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             ) : filteredProjects.length === 0 ? (
               <div className="text-center py-16 animate-fade-in">
-                <div className="max-w-md mx-auto glass p-8 rounded-2xl border border-border/20">
+                <div className="max-w-md mx-auto glass p-8 rounded-2xl border border-blue-500/30">
                   <h3 className="text-2xl font-semibold text-foreground mb-4">No projects found</h3>
                   <p className="text-muted-foreground mb-6">
                     Try adjusting your search or filter criteria to find your projects.
@@ -292,6 +337,8 @@ export default function Dashboard() {
                   >
                     <ProjectCard
                       project={project}
+                      expenses={expenses}
+                      payments={payments}
                       onEdit={(project) => {
                         setEditingProject(project);
                         setShowForm(true);
